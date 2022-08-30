@@ -25,7 +25,6 @@ def ReadNumber():
 def WriteNumber(intNo):
     try:
         no = int(intNo)
-        no = no + 1
         noStr = str(no)
         if os.path.isfile(trackNoFilePath):
             trackNoFile = open(trackNoFilePath, "w")
@@ -39,6 +38,7 @@ def WriteNumber(intNo):
 
 def MusicTagsForAccantus():
     trackNo = ReadNumber()
+    print("trackNo ", trackNo )
     mt = classMusicTags.MusicTags()
     tn = mt.SetMusicTags(musicDirectory=musicDir
                     ,albumName=album
@@ -50,3 +50,4 @@ def MusicTagsForAccantus():
 
 
 
+MusicTagsForAccantus()

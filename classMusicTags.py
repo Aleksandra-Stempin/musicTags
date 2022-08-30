@@ -151,3 +151,33 @@ class MusicTags():
             coverImagePath = ""
             print("There is no cover image in directory {}".format(musicDirectory))
         MusicTags.SetMusicTags(self, musicDirectory, albumName, artistName, initTrackNumber, coverImagePath)
+
+    def SetMusicTagsTagsInFileCoverInTheDir(self, musicDirectory):
+        """add tags to mp3 files and set image from directory named cover as an album cover.jpg, tags are read from a
+        file named tags.txt from the same directory.
+        Album is in first line of the file and artist is in the second line of the file"""
+        filePath = "{}\\tags.txt".format(musicDirectory)
+        coverPath = "{}\cover.jpg".format(musicDirectory)
+        cover = ""
+        album = ""
+        artist = ""
+        # check if musicDir is a valid directory
+        if os.path.isdir(musicDirectory):
+            # check if there is a tags.txt file in musicDir
+            if os.path.isfile(filePath):
+                # check if there is a cover.jpg file in musicDir
+                if os.path.isfile(coverPath):
+                    cover = coverPath
+                # reading album name and artist name from file
+                tagFile = open(filePath, "r")
+                album = (tagFile.readline()).strip()
+                artist = (tagFile.readline()).strip()
+                # setting tags to mp3 files in directory
+                MusicTags.SetMusicTagsCoverInTheDir(self, musicDirectory, album, artist, 1)
+
+
+            else:
+                errMsg = "File tags.txt could not be found in directory {}.".format(musicDirectory)
+                print(errMsg)
+        else:
+            print("{} in not a valid directory".format(musicDirectory))

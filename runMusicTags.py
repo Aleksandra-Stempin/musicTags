@@ -2,6 +2,7 @@ import classMusicTags
 
 # music directory path
 musicDir = r"C:\Users\Olenka\Downloads\new4"
+musicDir = r"C:\Users\aleksandra.stempin\OneDrive - Accenture\!Sync\Desktop\testFolder"
 
 # cower image path
 # coverImg = r"C:\Users\Olenka\Downloads\dog.jpg"
@@ -22,9 +23,11 @@ mt = classMusicTags.MusicTags()
 #     , initTrackNumber=startTrackNo
 #     , coverImg=coverImg
 # )
-mt.SetMusicTagsCoverInTheDir(
-    musicDirectory=musicDir
-    # , albumName=album
-    # , artistName=artist
-    # , initTrackNumber=startTrackNo
-)
+# mt.SetMusicTagsCoverInTheDir(
+#     musicDirectory=musicDir
+#     # , albumName=album
+#     # , artistName=artist
+#     # , initTrackNumber=startTrackNo
+# )
+
+mt.SetMusicTagsTagsInFileCoverInTheDir(musicDirectory=musicDir)

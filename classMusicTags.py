@@ -104,8 +104,9 @@ class MusicTags():
                     for song in songsList:
                         try:
                             songName = song[0:-4]
-                            song = song = "{}\{}".format(musicDirectory, song)
+                            song = "{}\{}".format(musicDirectory, song)
                             songTags = eyed3.load(song)
+                            songTags.initTag()
                             # setting album nane
                             songTags.tag.album = albumName
                             # setting artist and album artist
@@ -116,7 +117,6 @@ class MusicTags():
                             # setting file name as song tittle
                             songTags.tag.title = songName
                             # setting track number beginning from given number or from 1 if initTrackNumber wasn't given
-
                             songTags.tag.track_num = trackNo
                             songTags.tag.images.remove('')
                             songTags.tag.images.remove(u"FRONT_COVER")
@@ -166,14 +166,16 @@ class MusicTags():
             # check if there is a tags.txt file in musicDir
             if os.path.isfile(filePath):
                 # check if there is a cover.jpg file in musicDir
-                if os.path.isfile(coverPath):
-                    cover = coverPath
+                # if os.path.isfile(coverPath):
+                #     cover = coverPath
                 # reading album name and artist name from file
                 tagFile = open(filePath, "r")
                 album = (tagFile.readline()).strip()
                 artist = (tagFile.readline()).strip()
                 # setting tags to mp3 files in directory
-                MusicTags.SetMusicTagsCoverInTheDir(self, musicDirectory, album, artist, 1)
+                print(musicDirectory, album, artist)
+                MusicTags.SetMusicTagsCoverInTheDir(self, musicDirectory=musicDirectory, albumName=album,
+                                                    artistName=artist, initTrackNumber=1)
 
 
             else:

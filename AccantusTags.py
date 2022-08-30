@@ -2,6 +2,7 @@ import classMusicTags
 import os
 def ReadNumberAndIncrease():
     trackNoFilePath = r"AccantusTrackNo.txt"
+    trackNoInt = 1
     if os.path.isfile(trackNoFilePath):
         trackNoFile = open(trackNoFilePath, "r")
         trackNo = trackNoFile.read()
@@ -15,7 +16,6 @@ def ReadNumberAndIncrease():
             trackNoFile.close()
         except Exception as e:
             print("ReadNumberAndIncrease\n{}".format(e))
-            trackNoInt = 1
         finally:
             return trackNoInt
     else:

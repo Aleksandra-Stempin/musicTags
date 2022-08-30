@@ -139,10 +139,13 @@ class MusicTags():
                         finally:
                             trackNo = trackNo + 1
                     print("Job is done.")
+                    return trackNo
                 else:
                     print("List of songs is empty\n")
+                    return 1
         except Exception as err:
             print("Something went wrong if function SetMusicTags:\n{}\n".format(str(err)))
+            return 1
 
     def SetMusicTagsCoverInTheDir(self, musicDirectory="", albumName="no album", artistName="no artist", initTrackNumber=1):
         """add tags to mp3 files and set image from directory named cover as an album cover"""

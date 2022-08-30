@@ -1,7 +1,12 @@
 import classMusicTags
 import os
-def ReadNumberAndIncrease():
-    trackNoFilePath = r"AccantusTrackNo.txt"
+
+trackNoFilePath = r"AccantusTrackNo.txt"
+musicDir = r"C:\Users\Olenka\Downloads\new4"
+coverPath = r"images/accantusLogo.jpg"
+album = "Accantus"
+artist = "Studio Accantus"
+def ReadNumber():
     trackNoInt = 1
     if os.path.isfile(trackNoFilePath):
         trackNoFile = open(trackNoFilePath, "r")
@@ -9,30 +14,38 @@ def ReadNumberAndIncrease():
         trackNoFile.close()
         try:
             trackNoInt = int(trackNo)
-            newTrackNoInt = trackNoInt + 1
-            newTrackNoStr = str(newTrackNoInt)
-            trackNoFile = open(trackNoFilePath, "w")
-            trackNoFile.write(newTrackNoStr)
-            trackNoFile.close()
         except Exception as e:
-            print("ReadNumberAndIncrease\n{}".format(e))
+            print("ReadNumber\n{}".format(e))
         finally:
             return trackNoInt
     else:
         print("File {} doesn't exists".format(trackNoFilePath))
         return 1
 
-musicDir = r"C:\Users\Olenka\Downloads\new4"
-coverPath = r"images/accantusLogo.jpg"
-album = "Accantus"
-artist = "Studio Accantus"
-trackNo = ReadNumberAndIncrease()
-mt = classMusicTags.MusicTags()
-mt.SetMusicTags(musicDirectory=musicDir
-                ,albumName=album
-                ,artistName=artist
-                ,initTrackNumber=trackNo
-                ,coverImg=coverPath)
+def WriteNumber(intNo):
+    try:
+        no = int(intNo)
+        no = no + 1
+        noStr = str(no)
+        if os.path.isfile(trackNoFilePath):
+            trackNoFile = open(trackNoFilePath, "w")
+            trackNoFile.write(noStr)
+            trackNoFile.close()
+        else:
+            print("File {} doesn't exists".format(trackNoFilePath))
+    except Exception as e:
+        print("WriteNumber\n{}".format(e))
+
+
+def MusicTagsForAccantus():
+    trackNo = ReadNumber()
+    mt = classMusicTags.MusicTags()
+    tn = mt.SetMusicTags(musicDirectory=musicDir
+                    ,albumName=album
+                    ,artistName=artist
+                    ,initTrackNumber=trackNo
+                    ,coverImg=coverPath)
+    WriteNumber(tn)
 
 
 

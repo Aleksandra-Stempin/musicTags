@@ -176,7 +176,6 @@ class MusicTags():
                 album = (tagFile.readline()).strip()
                 artist = (tagFile.readline()).strip()
                 # setting tags to mp3 files in directory
-                print(musicDirectory, album, artist)
                 MusicTags.SetMusicTagsCoverInTheDir(self, musicDirectory=musicDirectory, albumName=album,
                                                     artistName=artist, initTrackNumber=1)
 
@@ -186,3 +185,30 @@ class MusicTags():
                 print(errMsg)
         else:
             print("{} in not a valid directory".format(musicDirectory))
+
+    def SetCoverOnly(self, musicDirectory="", coverImg=""):
+        if os.path.isdir(musicDirectory) and os.path.isfile(coverImg) and str(coverImg).endswith(".jpg"):
+            songList = MusicTags._ListFilesInDirectory(self, musicDirectory)
+            for song in songList:
+                try:
+                    songName = song
+                    song = "{}\{}".format(musicDirectory, song)
+                    songTags = eyed3.load(song)
+                    songTags.initTag()
+                    songTags.tag.images.remove('')
+                    songTags.tag.images.remove(u"FRONT_COVER")
+                    songTags.tag.images.set(3, open(coverImg, "rb").read(), "image/jpeg")
+                    songTags.tag.save(version=eyed3.id3.ID3_V2_3)
+                except Exception as e:
+                    errMsg = "There is an issue with track: {}\n{}".format(songName, e)
+                    print(errMsg)
+                    continue
+            print("Job is done.")
+
+
+
+
+
+
+
+

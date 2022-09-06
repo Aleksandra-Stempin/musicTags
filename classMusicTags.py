@@ -168,9 +168,6 @@ class MusicTags():
         if os.path.isdir(musicDirectory):
             # check if there is a tags.txt file in musicDir
             if os.path.isfile(filePath):
-                # check if there is a cover.jpg file in musicDir
-                # if os.path.isfile(coverPath):
-                #     cover = coverPath
                 # reading album name and artist name from file
                 tagFile = open(filePath, "r")
                 album = (tagFile.readline()).strip()
@@ -187,6 +184,7 @@ class MusicTags():
             print("{} in not a valid directory".format(musicDirectory))
 
     def SetCoverOnly(self, musicDirectory="", coverImg=""):
+        """sets only cover image"""
         if os.path.isdir(musicDirectory) and os.path.isfile(coverImg) and str(coverImg).endswith(".jpg"):
             songList = MusicTags._ListFilesInDirectory(self, musicDirectory)
             for song in songList:

@@ -3,6 +3,8 @@ import os
 class MusicTagsForAccantus():
     """sets tags (album and artist name and sets cover image) for Accantus songs"""
     global _trackNoFilePath
+    global trackNumber
+    trackNumber = 1
     _trackNoFilePath = r"AccantusTrackNo.txt"
 
     def _ReadNumber(self):
@@ -43,13 +45,16 @@ class MusicTagsForAccantus():
         album = "Accantus"
         artist = "Studio Accantus"
         trackNo = MusicTagsForAccantus._ReadNumber(self)
+
         mt = classMusicTags.MusicTags()
-        tn = mt.SetMusicTags(musicDirectory=musicDirectory
+        mt.SetMusicTags(musicDirectory=musicDirectory
                         ,albumName=album
                         ,artistName=artist
-                        ,initTrackNumber=trackNo
+                        ,initTrackNumber= trackNo
                         ,coverImg=coverPath)
-        MusicTagsForAccantus._WriteNumber(self,tn)
+        trackNo = trackNo + 1
+        trackNoStr = str(trackNo)
+        MusicTagsForAccantus._WriteNumber(self, trackNoStr)
 
 
 

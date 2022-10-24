@@ -136,8 +136,9 @@ class MusicTags():
                         except Exception as e:
                             print("Something went wrong in loop in function SetMusicTags:\n{}\n".format(str(e)))
                             continue
+                        trackNo = trackNo + 1
                     print("Job is done.")
-                    # return trackNo
+                    return trackNo
                 else:
                     print("List of songs is empty\n")
                     return 1

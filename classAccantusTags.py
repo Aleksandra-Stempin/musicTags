@@ -47,14 +47,13 @@ class MusicTagsForAccantus():
         trackNo = MusicTagsForAccantus._ReadNumber(self)
 
         mt = classMusicTags.MusicTags()
-        mt.SetMusicTags(musicDirectory=musicDirectory
+        trackNumber = mt.SetMusicTags(musicDirectory=musicDirectory
                         ,albumName=album
                         ,artistName=artist
                         ,initTrackNumber= trackNo
                         ,coverImg=coverPath)
-        trackNo = trackNo + 1
-        trackNoStr = str(trackNo)
-        MusicTagsForAccantus._WriteNumber(self, trackNoStr)
+        trackNumberStr = str(trackNumber)
+        MusicTagsForAccantus._WriteNumber(self, trackNumberStr)
 
 
 

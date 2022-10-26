@@ -52,6 +52,7 @@ class MusicTagsForAccantus():
                         ,artistName=artist
                         ,initTrackNumber= trackNo
                         ,coverImg=coverPath)
+        trackNumber = trackNumber + 1
         trackNumberStr = str(trackNumber)
         MusicTagsForAccantus._WriteNumber(self, trackNumberStr)
 

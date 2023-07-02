@@ -1,9 +1,8 @@
 import classMusicTags
 import classAccantusTags
 # music directory path
-# musicDir = r"C:\Users\Olenka\Downloads\new4"
-musicDir = r"C:\Users\Oleńka\Downloads\newMusic"
 
+musicDir =r"C:\Users\Olenka\Downloads\newMusic"
 # cower image path
 # coverImg = r"C:\Users\Olenka\Downloads\dog.jpg"
 # coverImg = r"C:\Users\Olenka\Downloads\accantusLogo.jpg"
